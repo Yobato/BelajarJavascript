@@ -80,10 +80,6 @@ function isValidPassword(givenPassword) {
 const getSplitName = (givenName = "") => {
     let namaSplit = givenName.split(" ");
 
-    // if (givenName == undefined) {
-    //     return "Error: Bro where is the parameter?";
-    // }
-
     if (typeof (givenName) !== "string") {
         return "Error: Invalid data type";
     }
