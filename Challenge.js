@@ -8,29 +8,24 @@ function changeWord(selectedText, changedText, text) {
     if (text.includes(selectedText)) {
         let hasil = text.replace(selectedText, changedText);
         return hasil;
-    } else {
-        console.log(`Kata ${selectedText} tidak ditemukan`)
     }
+    return (`Kata ${selectedText} tidak ditemukan`)
 }
 
 let kalimat1 = 'Andini sangat mencintai kamu selamanya'
-// console.log(changeWord('mencintai', 'membenci', kalimat1));
+// console.log(changeWord('kamu', 'Aku', kalimat1));
 
 // SOAL 2
 
 let checkTypeNumber = (givenNumber) => {
-    if (typeof (givenNumber) === "number") {
-        if (givenNumber % 2 === 0) {
-            return "GENAP";
-        } else {
-            return "GANJIL";
-        }
-    } else if (givenNumber == null) {
+    if (givenNumber == null) {
         return "Error: Bro where is the parameter?";
-    } else {
+    }
+    if (typeof (givenNumber) !== "number") {
         return "Error: Invalid data type";
     }
 
+    return givenNumber % 2 === 0 ? "GENAP" : "GANJIL";
 }
 
 // console.log(checkTypeNumber(10));
@@ -42,42 +37,38 @@ let checkTypeNumber = (givenNumber) => {
 let emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 function checkEmail(email) {
-    if (typeof (email) === "string") {
-        if (email.match(emailFormat)) {
-            return "VALID";
-        } else {
-            return "INVALID";
-        }
-    } else if (email == null) {
+    if (email == null) {
         return "Error: Bro where is the parameter?";
-    } else {
+    }
+    if (typeof (email) !== "string") {
         return "Error: Invalid data type";
     }
 
+    return email.match(emailFormat) ? "VALID" : "INVALID";
 }
 
 // console.log(checkEmail('apranata@binar.co.id'));
 // console.log(checkEmail('apranata@binar.com'));
 // console.log(checkEmail('apranata@binar'));
+// console.log(checkEmail(1232134));
 
 // SOAL 4
 
 let passwordFormat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,20}$/;
 
 function isValidPassword(givenPassword) {
-    if (typeof (givenPassword) === "string") {
-        if (givenPassword.match(passwordFormat)) {
-            return true;
-        } else {
-            return false;
-        }
-    } else if (givenPassword == null) {
+
+    if (givenPassword == null) {
         return "Error: Bro where is the parameter?";
-    } else {
+    }
+
+    if (typeof (givenPassword) !== "string") {
         return "Error: Invalid data type";
     }
 
+    return givenPassword.match(passwordFormat) ? true : false;
 }
+
 // console.log(isValidPassword('Meong2021'));
 // console.log(isValidPassword('meong2021'));
 // console.log(isValidPassword('@eong'));
@@ -86,67 +77,73 @@ function isValidPassword(givenPassword) {
 
 // SOAL 5
 
-const getSplitName = (givenName) => {
+const getSplitName = (givenName = "") => {
     let namaSplit = givenName.split(" ");
 
-    if (typeof (givenName) === "string") {
-        if (givenName.length > 0) {
-            if (namaSplit.length === 1) {
-                return {
-                    firstName: namaSplit[0],
-                    midName: null,
-                    lastName: null
-                }
-            } else if (namaSplit.length === 2) {
-                return {
-                    firstName: namaSplit[0],
-                    midName: null,
-                    lastName: namaSplit[1]
-                }
-            } else if (namaSplit.length === 3) {
-                return {
-                    firstName: namaSplit[0],
-                    midName: namaSplit[1],
-                    lastName: namaSplit[2]
-                }
-            } else {
-                return "Jumlah kata berlebihan"
-            }
-        } else {
-            return "Nama tidak valid"
-        }
+    // if (givenName == undefined) {
+    //     return "Error: Bro where is the parameter?";
+    // }
 
-    } else if (givenName == null) {
-        return "Error: Bro where is the parameter?";
-    } else {
+    if (typeof (givenName) !== "string") {
         return "Error: Invalid data type";
     }
 
+    if (givenName.length > 0) {
+        switch (namaSplit.length) {
+            case 1:
+                return {
+                    firstName: namaSplit[0],
+                        midName: null,
+                        lastName: null
+                }
+                case 2:
+                    return {
+                        firstName: namaSplit[0],
+                            midName: null,
+                            lastName: namaSplit[1]
+                    }
 
+                    case 3:
+                        return {
+                            firstName: namaSplit[0],
+                                midName: namaSplit[1],
+                                lastName: namaSplit[2]
+                        }
+
+                        default:
+                            return "Jumlah kata berlebihan"
+        }
+    } else {
+        return "Nama tidak valid"
+    }
 }
 
-// console.log(getSplitName("Satriyo Pinandhito"));
+// console.log(getSplitName("Satriyo Bagus Pinandhito"));
+// console.log(getSplitName("Satriyo Bagus"));
+// console.log(getSplitName());
 
 // SOAL 6
 
 function getAngkaTerbesarKedua(dataNumbers) {
-    if (typeof (dataNumbers) === "object") {
-        let max = dataNumbers.sort(function (a, b) {
-            return b - a
-        })
 
-        let uniqueMax = [...new Set(max)];
-        return uniqueMax[1];
-
-    } else if (dataNumbers == null) {
+    if (dataNumbers == null) {
         return "Error: Bro where is the parameter?";
-    } else {
+    }
+
+    if (typeof (dataNumbers) !== "object") {
         return "Error: Invalid data type";
     }
+
+    let max = dataNumbers.sort(function (a, b) {
+        return b - a
+    })
+
+    let uniqueMax = [...new Set(max)];
+    return uniqueMax[1];
 }
 
 const dataAngka = [9, 4, 8, 7, 4, 3, 2, 2]
-const dataAngka1 = [9, 4, 1, 4, 3, 2, 2, 9, 9]
+const dataAngka1 = [10, 8, 1, 5, 7, 2, 2, 9, 9]
 
 // console.log(getAngkaTerbesarKedua(dataAngka1));
 
@@ -180,16 +177,19 @@ const dataPenjualanPakAldi = [{
 
 const getTotalPenjualan = (dataPenjualan) => {
     let sum = 0;
-    if (typeof (dataPenjualan) === "object") {
-        for (let i = 0; i < dataPenjualan.length; i++) {
-            sum += dataPenjualan[i].totalTerjual;
-        }
-        return sum;
-    } else if (dataPenjualan == null) {
+
+    if (dataPenjualan == null) {
         return "Error: Bro where is the parameter?";
-    } else {
+    }
+
+    if (typeof (dataPenjualan) !== "object") {
         return "Error: Invalid data type";
     }
+
+    for (let i = 0; i < dataPenjualan.length; i++) {
+        sum += dataPenjualan[i].totalTerjual;
+    }
+    return sum;
 }
 
 // console.log(getTotalPenjualan(dataPenjualanPakAldi));
@@ -277,7 +277,7 @@ const getInfoPenjualan = (dataPenjualan) => {
         let modal = TotalModal(dataPenjualan);
         return untung / modal * 100;
     }
-    console.log(PersentaseKeuntungan(dataPenjualanNovel));
+    // console.log(PersentaseKeuntungan(dataPenjualanNovel));
 
     // Formatter untuk mencetak dengan format mata uang rupiah
     const formatter = new Intl.NumberFormat('id-ID', {
