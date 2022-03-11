@@ -148,7 +148,7 @@ function getAngkaTerbesarKedua(dataNumbers) {
 const dataAngka = [9, 4, 8, 7, 4, 3, 2, 2]
 const dataAngka1 = [9, 4, 1, 4, 3, 2, 2, 9, 9]
 
-console.log(getAngkaTerbesarKedua(dataAngka1));
+// console.log(getAngkaTerbesarKedua(dataAngka1));
 
 // SOAL 7
 
@@ -192,7 +192,7 @@ const getTotalPenjualan = (dataPenjualan) => {
     }
 }
 
-console.log(getTotalPenjualan(dataPenjualanPakAldi));
+// console.log(getTotalPenjualan(dataPenjualanPakAldi));
 // console.log(getTotalPenjualan(dataPenjualanPakAldi));
 
 // SOAL 8
@@ -279,7 +279,7 @@ const getInfoPenjualan = (dataPenjualan) => {
     }
     console.log(PersentaseKeuntungan(dataPenjualanNovel));
 
-    // Create our number formatter.
+    // Formatter untuk mencetak dengan format mata uang rupiah
     const formatter = new Intl.NumberFormat('id-ID', {
         style: 'currency',
         currency: 'IDR',
@@ -298,4 +298,4 @@ const getInfoPenjualan = (dataPenjualan) => {
 
 }
 
-console.log(getInfoPenjualan(dataPenjualanNovel));
+// console.log(getInfoPenjualan(dataPenjualanNovel));
